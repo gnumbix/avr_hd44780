@@ -27,6 +27,10 @@
 Демо пример можно открыть в Atmel Studio. Файл проекта example.atsln (для atmega88)
 
 
+Пример работы библиотеки в Proteus:
+
+![Alt text](/proteus_example/ProteusScreen.jpg?raw=true "Demo Project")
+
 ## Configuration
 
 Настройки находятся в файле hd44780.h вверху. Настройте их под себя.
