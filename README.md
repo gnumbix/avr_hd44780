@@ -160,7 +160,7 @@ int main(void)
 
 ## Authors
 
-* **Kirill Pershin** - *Initial work* - [PurpleBooth](https://github.com/GnumBix)
+* **Kirill Pershin** - *Initial work* - [GnumBix](https://github.com/GnumBix)
 
 See also the list of [contributors](https://github.com/gnumbix/avr_hd44780/contributors) who participated in this project.
 
