@@ -36,7 +36,7 @@
 // Помимо этого используйте стандартную нумерацию. PORT1 к D1, PORT2 к D2 итд...
 
 
-#define HD44780_CONFIG_DATA_PORT_NAME			D	// Буква порта к которому подключена шина данных (D0-D7)
+#define HD44780_CONFIG_DATA_PORT_NAME		D	// Буква порта к которому подключена шина данных (D0-D7)
 #define HD44780_CONFIG_D0_PIN				0	// D0 (Если 4 битный режим то указывать не нужно)
 #define HD44780_CONFIG_D1_PIN				1	// D1 (Если 4 битный режим то указывать не нужно)
 #define HD44780_CONFIG_D2_PIN				2	// D2 (Если 4 битный режим то указывать не нужно)
@@ -46,7 +46,7 @@
 #define HD44780_CONFIG_D6_PIN				6	// D6
 #define HD44780_CONFIG_D7_PIN				7	// D7
 
-#define HD44780_CONFIG_CONTROL_PORT_NAME		B	// Буква порта к которому подключены контрольные линии
+#define HD44780_CONFIG_CONTROL_PORT_NAME	B	// Буква порта к которому подключены контрольные линии
 #define HD44780_CONFIG_RS_PIN				0	// RS
 #define HD44780_CONFIG_RW_PIN				1	// RW
 #define HD44780_CONFIG_E_PIN				2	// E
@@ -65,13 +65,13 @@
 
 #define HD44780_CONFIG_CURSOR_ON			0	// Показывать курсор или нет. 1 показывать / 0 нет
 
-#define HD44780_CONFIG_CURSOR_DIRECTION			1	// Указывает направлене курсора если он включен (1 - вправо / 0 влево)
+#define HD44780_CONFIG_CURSOR_DIRECTION		1	// Указывает направлене курсора если он включен (1 - вправо / 0 влево)
 
-#define HD44780_CONFIG_CURSOR_LCD_SHIFT			1	// Разрешить сдвиг экрана при сдвиге курсора ( 1 - да / 0 нет)
+#define HD44780_CONFIG_CURSOR_LCD_SHIFT		1	// Разрешить сдвиг экрана при сдвиге курсора ( 1 - да / 0 нет)
 
 #define HD44780_CONFIG_FONT_SIZE			0	// Какой размер шрифта (1 - 5x10 / 0 - 5x8)
 
-#define HD44780_CONFIG_BIT				1	// Режим битности (0 - 4bit/ 1 - 8bit) 
+#define HD44780_CONFIG_BIT					0	// Режим битности (0 - 4bit/ 1 - 8bit) 
 												// 4bit режим в половину медленее. И памяти ест больше. Так как приходится
 												// выполнять дополнительные операции.
 
@@ -97,17 +97,17 @@
 // Я старался делать все паузы по документации. Понятно что чем паузы меньше тем быстрее работает LCD
 // Но если выставить их в сличком маленькие числа, возможны глюки. Поэтому если хотите быстрый экран. Подбирайте методом тыка.
 
-#define HD44780_CONFIG_PAUSE_CMD_E				10    // Пауза между поднятием и опусканием E флага (нужно чтобы HD44780 замечал команды)
+#define HD44780_CONFIG_PAUSE_CMD_E					10    // Пауза между поднятием и опусканием E флага (нужно чтобы HD44780 замечал команды)
 
 #define HD44780_CONFIG_PAUSE_AFTER_CMD				300     // Пауза после любой команды (может быть необходимо если медленный LCD)
 
-#define HD44780_CONFIG_PAUSE_BUSY				300    // Пауза для чтения busy флага. В теории и без этой паузы должно работать.
+#define HD44780_CONFIG_PAUSE_BUSY					300    // Пауза для чтения busy флага. В теории и без этой паузы должно работать.
 
 // Паузы влияющие только на скорость запуска.
 
 #define HD44780_CONFIG_PAUSE_CMD_START				1000  // Пауза после открытия портов. Для некоторых LCD это необходимо. 1ms
 
-#define HD44780_CONFIG_PAUSE_START				40000 // Пауза перед инициализацией. По документации надо 40ms
+#define HD44780_CONFIG_PAUSE_START					40000 // Пауза перед инициализацией. По документации надо 40ms
 
 #define HD44780_CONFIG_PAUSE_WRITE_INIT				10    // Пауза между поднятием и опусканием E флага при инициализации. 
 
@@ -129,12 +129,12 @@
 
 // Дефайны для работы с avr портами итд.
 
-#define HD44780_GLUE(a, b)						a##b
+#define HD44780_GLUE(a, b)							a##b
 #define HD44780__GLUE(a, b, c)						a##b##c
-#define HD44780_PORT(x)							HD44780_GLUE(PORT, x)
+#define HD44780_PORT(x)								HD44780_GLUE(PORT, x)
 #define HD44780__PORTPIN(x, y)						HD44780__GLUE(P, x , y)
-#define HD44780_PIN(x)							HD44780_GLUE(PIN, x)
-#define HD44780_DDR(x)							HD44780_GLUE(DDR, x)
+#define HD44780_PIN(x)								HD44780_GLUE(PIN, x)
+#define HD44780_DDR(x)								HD44780_GLUE(DDR, x)
 #define HD44780__DDR_PIN(x, y)						HD44780__GLUE(DD, x, y)
 #define HD44780_DDR_CONTROL_PIN(x)					HD44780__DDR_PIN(HD44780_CONFIG_CONTROL_PORT_NAME, x)
 #define HD44780_DDR_DATA_PIN(x)						HD44780__DDR_PIN(HD44780_CONFIG_DATA_PORT_NAME, x)
@@ -151,14 +151,14 @@
 #if HD44780_CONFIG_BIT > 0
 
 	// 8Bit
-	#define HD44780_SYS_DATA_DDR_PINS					(( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D0_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D1_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D2_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D3_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
-	#define HD44780_SYS_DATA_PORT_PINS					(( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D0_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D1_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D2_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D3_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
+	#define HD44780_SYS_DATA_DDR_PINS				(( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D0_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D1_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D2_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D3_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
+	#define HD44780_SYS_DATA_PORT_PINS				(( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D0_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D1_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D2_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D3_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
 
 #else
 
 	// 4 bit
-	#define HD44780_SYS_DATA_DDR_PINS					(( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
-	#define HD44780_SYS_DATA_PORT_PINS					(( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
+	#define HD44780_SYS_DATA_DDR_PINS				(( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_DDR_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
+	#define HD44780_SYS_DATA_PORT_PINS				(( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D4_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D5_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D6_PIN) ) | ( 1 << HD44780_PORT_DATA_PIN(HD44780_CONFIG_D7_PIN) ))
 
 #endif
 
@@ -274,12 +274,12 @@
 // Состояние экрана (active  0 выключен / 1 включен)
 // Показывать или нет курсор (cursor 0 скрыть / 1 показывать)
 // Мигать курсором ( 0 нет / 1 да)  Если cursor установлено в 0 то мигание тоже отключается
-#define HD44780_SET_LCD_CTRL(active, cursor, blink)		( HD44780_INSTRUCTION_LCD_CTRL | (active ? HD44780_FLAG_DISPLAY_ACTIVE : 0) | (cursor ? HD44780_FLAG_CURSOR_ACTIVE : 0) | (blink ? ( cursor ? HD44780_FLAG_CURSOR_BLINK : 0 ) : 0) )
+#define HD44780_SET_LCD_CTRL(active, cursor, blink)			( HD44780_INSTRUCTION_LCD_CTRL | (active ? HD44780_FLAG_DISPLAY_ACTIVE : 0) | (cursor ? HD44780_FLAG_CURSOR_ACTIVE : 0) | (blink ? ( cursor ? HD44780_FLAG_CURSOR_BLINK : 0 ) : 0) )
 
 // Позволяет двигать экран или курсор
 // Указывает что двигать (what 0 двигаем курсор / 1 двигаем экран)
 // В каком направлении двигаем (direction 0 влево / 1 вправо)
-#define HD44780_SET_SHIFT(what, direction)			( HD44780_INSTRUCTION_SHIFT | (what ? HD44780_FLAG_SHIFT_DISPLAY : 0) | (direction ? HD44780_FLAG_SHIFT_DIRECTION : 0) )
+#define HD44780_SET_SHIFT(what, direction)					( HD44780_INSTRUCTION_SHIFT | (what ? HD44780_FLAG_SHIFT_DISPLAY : 0) | (direction ? HD44780_FLAG_SHIFT_DIRECTION : 0) )
 
 // Используется для инициализации. Устанавливает режим битности, количество строк и размер шрифта.
 // После инициализации изменить нельзя.
@@ -287,7 +287,7 @@
 // Количество строк (lines 0 = 1 строка / 1 = 2 и более)
 // Размер шрифта (fontsize 0 = 5x8 / 1 = 5x10)
 #define HD44780_SET_FUNCTION(bitmode, lines, fontsize)		( HD44780_INSTRUCTION_FUNCTION_SET | ( bitmode ? HD44780_FLAG_EIGHT_BIT : 0 ) | ( lines ? HD44780_FLAG_TWO_LINES : 0 ) | ( fontsize ? HD44780_FLAG_FONT_SIZE : 0 ) )
-#define HD44780_SET_FUNCTIONEX(bitmode, lines, fontsize)		( HD44780_INSTRUCTION_FUNCTION_SET | ( bitmode ? HD44780_FLAG_EIGHT_BIT : 0 ) | ( fontsize ? HD44780_FLAG_FONT_SIZE : 0 ) )
+#define HD44780_SET_FUNCTIONEX(bitmode, lines, fontsize)	( HD44780_INSTRUCTION_FUNCTION_SET | ( bitmode ? HD44780_FLAG_EIGHT_BIT : 0 ) | ( fontsize ? HD44780_FLAG_FONT_SIZE : 0 ) )
 
 // Устанавливает адрес CGRAM. В addr адрес который нужно установить.
 #define HD44780_SET_CGRAM_ADDRESS(addr)				(HD44780_INSTRUCTION_CGRAM_ADDRESS | addr )
