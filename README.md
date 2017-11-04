@@ -1,8 +1,9 @@
 # avr_hd44780
 
+
 Данная библиотека написана для работы с LCD экранами, построенными на чипе HD44780 (или совместимого с ним). 
 
-Она позволяет работать как в 4bit режиме, так и в 8bit. Помимо этого есть возможность не соблюдать порядок
+Она позволяет работать как в 4bit режиме, так и в 8bit. Помимо этого, есть возможность не соблюдать порядок
 подключения контактов. Это будет полезно, если не хочется заново разводить плату, а на порту
 есть свободные контакты.
 
@@ -156,10 +157,6 @@ int main(void)
 ## Built With
 
 * [Atmel Studio](http://www.atmel.com/tools/atmelstudio.aspx) - AVR IDE
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
